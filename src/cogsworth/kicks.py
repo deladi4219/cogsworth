@@ -192,7 +192,8 @@ def integrate_orbit_with_events(
 
         except Exception as e:   # pragma: no cover
             # if the error is not a runtime error that starts with "Integration failed" then raise it
-            if not (isinstance(e, RuntimeError) and str(e).startswith("Integration failed")):
+            if not (isinstance(e, RuntimeError) and str(e).startswith("Integration failed")) \
+            and not (isinstance(e, ValueError)):
                 raise e
 
             # otherwise, try again with a smaller timestep
